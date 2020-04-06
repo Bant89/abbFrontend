@@ -1,14 +1,13 @@
 import React from 'react'
-import { RegistrationForm } from "../components/RegistrationForm"
-import { SideCarrousel } from "../components/SideCarrousel"
+import { RouteComponentProps } from '@reach/router'
+import { RegistrationForm } from '../components/RegistrationForm'
 
-const RegisterPage = () => {
+const Register = (props: RouteComponentProps) => {
   return (
     <div>
-     <RegistrationForm />
-     {/* <SideCarrousel /> */}
+      <RegistrationForm />
     </div>
   )
 }
 
-export default RegisterPage
+export default Register

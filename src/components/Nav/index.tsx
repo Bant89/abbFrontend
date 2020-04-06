@@ -1,6 +1,7 @@
 import React from 'react'
+import { RouteComponentProps } from '@reach/router';
 
-const Nav = () => {
+const Nav = (props: RouteComponentProps)  => {
   return <h1>Nav</h1>
 }
 
