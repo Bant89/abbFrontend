@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Main from './pages/Main'
 import Inbox from './pages/Inbox'
 import Profile from './pages/Profile'
+import Saved from './pages/Saved'
 import Search from './pages/Search'
 import Nav from './components/Nav'
 
@@ -17,6 +18,7 @@ function App() {
         <Inbox path="inbox" />
         <Profile path="profile" />
         <Search path="search" />
+        <Saved path="saved" />
       </Router>
       <Nav />
     </>

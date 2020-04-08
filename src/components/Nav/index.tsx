@@ -1,8 +1,22 @@
-import React from 'react'
-import { RouteComponentProps } from '@reach/router';
+import React, { CSSProperties } from 'react'
+import { RouteComponentProps, Link } from '@reach/router';
 
 const Nav = (props: RouteComponentProps)  => {
-  return <h1>Nav</h1>
+
+  const navStyle: CSSProperties = {
+    display: "flex", 
+    justifyContent: "space-around"
+  }
+
+  return (
+    <nav style={navStyle}>
+      <Link to="/main">EXPLORE</Link>
+      <Link to="/saved">SAVED</Link>
+      <Link to="/search">SEARCH</Link>
+      <Link to="/inbox">INBOX</Link>
+      <Link to="/register">LOG IN</Link>
+    </nav>
+  )
 }
 
 export default Nav;
