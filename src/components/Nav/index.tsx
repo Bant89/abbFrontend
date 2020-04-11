@@ -14,7 +14,7 @@ const Nav = (props: RouteComponentProps)  => {
       <Link to="/saved">SAVED</Link>
       <Link to="/search">SEARCH</Link>
       <Link to="/inbox">INBOX</Link>
-      <Link to="/register">LOG IN</Link>
+      <Link to="/login">LOG IN</Link>
     </nav>
   )
 }

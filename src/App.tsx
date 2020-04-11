@@ -14,6 +14,7 @@ function App() {
     <>
       <Router>
         <Register path="/register" />
+        <Register path="/login" />
         <Main path="/" default />
         <Inbox path="inbox" />
         <Profile path="profile" />

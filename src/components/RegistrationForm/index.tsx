@@ -3,6 +3,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import { COUNTRIES } from '../../utils/Constants'
+import { Link } from '@reach/router'
 
 export const RegistrationForm = () => {
   const formik = useFormik({
@@ -95,6 +96,7 @@ export const RegistrationForm = () => {
 
         <button type="submit">Register</button>
       </form>
+    <p>Already have an account?<br /><Link to="/login">login</Link></p>
     </div>
   )
 }
