@@ -2,7 +2,6 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
-import { ListingProps } from '../utils/Types'
 
 const GET_LISTINGS = gql`
   query getListings {
@@ -24,24 +23,18 @@ const GET_LISTINGS = gql`
       }
     }
   }
-`;
+`
 
-export const Listings: React.FC<ListingProps> = () => {
-  const {
-    data,
-    loading,
-    error
-  } = useQuery<
-    ListingProps
-  >(GET_LISTINGS)
+export const Listings: React.FC<{}> = () => {
+  const { data, loading, error } = useQuery(GET_LISTINGS)
+
+  console.log(data)
+  console.log('Error: ', error)
 
   if (loading) return <p>Loading!</p>
   if (error) return <p>Error!</p>
   if (!data) return <p>Not Found!</p>
 
-  
   console.log(data)
-
-  return <p>All good</p>
-
+  return <p>All good!</p>
 }

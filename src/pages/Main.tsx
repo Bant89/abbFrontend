@@ -8,7 +8,7 @@ const Main = (props: RouteComponentProps)  => {
   return (
     <div>
       <h1>Main</h1>
-      {Listings}
+      <Listings />
     </div>
   )
 }
