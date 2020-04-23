@@ -1,27 +1,11 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import axios from 'axios'
 import * as Yup from 'yup'
 import { Link } from '@reach/router'
-import gql from 'graphql-tag'
-import { useMutation } from '@apollo/react-hooks'
 import { COUNTRIES } from '../../utils/Constants'
 
 export const RegistrationForm = () => {
-
-  const CREATE_USER = gql`
-    mutation CreateUser($input: CreateUserInput!){
-      createUser(input: $input){
-        user {
-          id
-          name
-          country
-          bio
-        }
-      }
-    }
-  `;
-
-  const [addUser, { data }] = useMutation(CREATE_USER);
 
   interface User {
     name: string,
@@ -35,8 +19,21 @@ export const RegistrationForm = () => {
 
 
   const CreateUser = (values: User): void => {
-    addUser({ variables: { input: values }})
-    console.log(data)
+    let { name, email, password, country, bio, languagues, isHost } = values
+    axios.post('http://localhost:3000/auth/register', {
+      params: {
+        name,
+        email,
+        password,
+        country,
+        bio,
+        languagues,
+        isHost
+      }
+    }).then(response => {
+      console.log(response)
+    })
+    .catch(error => console.error(error))
   }
 
 
@@ -45,7 +42,6 @@ export const RegistrationForm = () => {
       name: '',
       email: '',
       password: '',
-      // confirmPassword: '',
       country: '',
       isHost: false,
       bio: '',
@@ -59,10 +55,6 @@ export const RegistrationForm = () => {
       password: Yup.string()
         .min(10, 'Password is too short, minimum 10 chars')
         .required('Required'),
-      // confirmPassword: Yup.string()
-      //   .min(10, 'Password is too short, minimum 10 chars')
-      //   .oneOf([Yup.ref('password'), null], "Passwords don't match")
-      //   .required('Required'),
       country: Yup.string().required('Required'),
       isHost: Yup.boolean().required('Required'),
       bio: Yup.string().required('Required'),
@@ -109,18 +101,6 @@ export const RegistrationForm = () => {
         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>
         ) : null}
-
-        {/* <label htmlFor="confirmPassword">Confirm password</label>
-        <input
-          id="confirmPassword"
-          placeholder="Confirm password"
-          type="password"
-          {...formik.getFieldProps('confirmPassword')}
-        />
-        {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-          <div>{formik.errors.confirmPassword}</div>
-        ) : null} */}
-
         <label htmlFor="country">Country</label>
         <select
           placeholder="Country currently at:"
