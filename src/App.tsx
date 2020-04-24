@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import Saved from './pages/Saved'
 import Search from './pages/Search'
 import Nav from './components/Nav'
+import ResetPasswordForm from './components/ResetPasswordForm'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Profile path="profile" />
         <Search path="search" />
         <Saved path="saved" />
+        <ResetPasswordForm path="forgot" />
       </Router>
       <Nav />
     </>

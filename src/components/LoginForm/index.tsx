@@ -81,6 +81,8 @@ export const LoginForm = () => {
         <br />
         <Link to="/register">register</Link>
       </p>
+
+    <p>Forgot password?<br /><Link to="/forgot">Reset</Link></p>
     </div>
   )
 }

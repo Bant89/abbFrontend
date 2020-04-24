@@ -27,8 +27,8 @@ export const RegistrationForm = () => {
         password,
         country,
         bio,
-        languagues,
-        isHost
+        languagues: [languagues.split(',')],
+        is_host: isHost
       }
     }).then(response => {
       console.log(response)
@@ -140,6 +140,7 @@ export const RegistrationForm = () => {
         <button type="submit">Register</button>
       </form>
     <p>Already have an account?<br /><Link to="/login">login</Link></p>
+    <p>Forgot password?<br /><Link to="/forgot">Reset</Link></p>
     </div>
   )
 }
