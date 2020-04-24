@@ -7,7 +7,7 @@ import { COUNTRIES } from '../../utils/Constants'
 
 export const RegistrationForm = () => {
 
-  interface User {
+  type User = {
     name: string,
     email: string,
     password: string,

@@ -1,20 +1,19 @@
 
-export interface ListingProps {
+export type Listing = {
   id: string;
-  images: string[];
+  name: string;
+  average: number;
   costPerNightBase: number;
   country: string;
-  guests: number;
-  baths: number;
-  bedrooms: number;
-  average: number;
-  address: string;
-  location: string;
-  name: string;
-  owner: UserProps
+  images: string[];
 }
 
-export interface UserProps {
+export type ListingsData = {
+  listings: Listing[];
+}
+
+
+export type User = {
   id: string;
   name: string;
   bio: string;

@@ -1,40 +1,38 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import { RouteComponentProps } from '@reach/router'
+import Card from '../components/Card'
+import { ListingsData } from '../utils/Types'
 
 const GET_LISTINGS = gql`
   query getListings {
     listings {
       id
       name
-      description
       average
       costPerNightBase
       country
-      guests
-      baths
-      bedrooms
-      owner {
-        id
-        name
-        bio
-        languagues
-      }
+      images
     }
   }
 `
 
 export const Listings: React.FC<{}> = () => {
-  const { data, loading, error } = useQuery(GET_LISTINGS)
+  const { data, loading, error } = useQuery<ListingsData>(GET_LISTINGS)
 
   console.log(data)
-  console.log('Error: ', error)
 
   if (loading) return <p>Loading!</p>
   if (error) return <p>Error!</p>
   if (!data) return <p>Not Found!</p>
 
   console.log(data)
-  return <p>All good!</p>
+
+  const cards = data.listings.map(listing => <Card props={listing} />)
+
+  return (
+    <div>
+      {cards}
+    </div>
+  )
 }

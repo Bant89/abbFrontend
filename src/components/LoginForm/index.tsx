@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 
 export const LoginForm = () => {
 
-  interface Credentials {
+  type Credentials = {
     email: string,
     password: string
   }
@@ -20,12 +20,8 @@ export const LoginForm = () => {
     }).then(response => {
       console.log(response);
       let { access_token, user_id } = response.data;
-
-      if (sessionStorage.getItem('access_token') === null )
-        sessionStorage.setItem('access_token', access_token)
-      
-      if (sessionStorage.getItem('user_id') === null) 
-        sessionStorage.setItem('user_id', user_id)
+      sessionStorage.setItem('access_token', access_token)
+      sessionStorage.setItem('user_id', user_id)
       
     })
     .catch(error => {
