@@ -3,33 +3,36 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import { Link, useNavigate } from '@reach/router'
 import * as Yup from 'yup'
+import { useDispatch } from 'react-redux'
+import { login_request, failed_login, login_success } from '../../actions/index'
+
+import { UserCredentials } from '../../utils/Types'
 
 export const LoginForm = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  type Credentials = {
-    email: string,
-    password: string
+  const GetToken = (values: UserCredentials) => {
+    dispatch(login_request(values))
+    axios
+      .post('http://localhost:3000/auth/login', {
+        params: {
+          email: values.email,
+          password: values.password,
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        let { access_token, user_id } = response.data
+        sessionStorage.setItem('access_token', access_token)
+        sessionStorage.setItem('user_id', user_id)
+        dispatch(login_success(user_id))
+      })
+      .catch((error) => {
+        console.log(error)
+        dispatch(failed_login(error))
+      })
   }
-
-  const navigate = useNavigate();
-
-  const GetToken = (values : Credentials) => {
-    axios.post('http://localhost:3000/auth/login', {
-      params: {
-        email: values.email,
-        password: values.password
-      }
-    }).then(response => {
-      console.log(response);
-      let { access_token, user_id } = response.data;
-      sessionStorage.setItem('access_token', access_token)
-      sessionStorage.setItem('user_id', user_id)
-      
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  } 
 
   const formik = useFormik({
     initialValues: {
@@ -41,7 +44,7 @@ export const LoginForm = () => {
       password: Yup.string().required('Required'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      console.log(values)
       GetToken(values)
       navigate('/main')
     },
@@ -81,7 +84,11 @@ export const LoginForm = () => {
         <Link to="/register">register</Link>
       </p>
 
-    <p>Forgot password?<br /><Link to="/forgot">Reset</Link></p>
+      <p>
+        Forgot password?
+        <br />
+        <Link to="/forgot">Reset</Link>
+      </p>
     </div>
   )
 }

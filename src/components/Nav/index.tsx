@@ -1,8 +1,13 @@
 import React, { CSSProperties } from 'react'
 import { RouteComponentProps, Link } from '@reach/router';
+import { fetchUserRequest, fetchUserError, fetchUserSuccess } from '../../actions/index'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const Nav = (props: RouteComponentProps)  => {
 
+  const dispatch = useDispatch()
+  
   const navStyle: CSSProperties = {
     display: "flex", 
     justifyContent: "space-around"

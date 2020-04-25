@@ -12,7 +12,6 @@ export type ListingsData = {
   listings: Listing[];
 }
 
-
 export type User = {
   id: string;
   name: string;
@@ -21,4 +20,9 @@ export type User = {
   country: string;
   languagues: string[];
   isHost: boolean;
+}
+
+export type UserCredentials = {
+  email: string,
+  password: string
 }
