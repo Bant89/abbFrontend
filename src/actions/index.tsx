@@ -1,73 +1,62 @@
 import { UserCredentials, User } from '../utils/Types'
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  FAILED_LOGIN,
+  FETCH_USER_ERROR,
+  FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
+  LoginActionsTypes,
+  UserActionTypes,
+} from '../utils/ReduxTypes'
 
 // AUTH AND USER ACTIONS
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST'
-
-export const login_request = (values: UserCredentials) => {
+export const login_request = (values: UserCredentials): LoginActionsTypes => {
   return {
     type: LOGIN_REQUEST,
-    payload: { values },
+    payload: values,
   }
 }
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-
-export const login_success = (user_id: String) => {
+export const login_success = (user_id: string): LoginActionsTypes => {
   return {
     type: LOGIN_SUCCESS,
-    payload: { user_id },
+    payload: user_id,
   }
 }
 
-export const LOGOUT = 'LOGOUT'
-
-export const logout = () => {
+export const logout = (): LoginActionsTypes => {
   return {
     type: LOGOUT,
   }
 }
 
-export const FAILED_LOGIN = 'FAILED_LOGIN'
-
-export const failed_login = (error: String) => {
+export const failed_login = (error: string): LoginActionsTypes => {
   return {
     type: FAILED_LOGIN,
-    payload: {
-      error,
-    },
+    payload: error,
   }
 }
 
-export const FETCH_USER_ERROR = 'FETCH_USER_ERROR'
-
-export const fetchUserError = (error: String) => {
+export const fetchUserError = (error: string): UserActionTypes => {
   return {
     type: FETCH_USER_ERROR,
-    payload: {
-      error,
-    },
+    payload: error,
   }
 }
 
-export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST'
-
-export const fetchUserRequest = (userId: String) => {
+export const fetchUserRequest = (userId: string): UserActionTypes => {
   return {
     type: FETCH_USER_REQUEST,
-    payload: {
-      userId,
-    },
+    payload: userId,
   }
 }
 
-export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
-
-export const fetchUserSuccess = (result: User) => {
+export const fetchUserSuccess = (result: User): UserActionTypes => {
   return {
     type: FETCH_USER_SUCCESS,
-    payload: {
-      result,
-    },
+    payload: result,
   }
 }

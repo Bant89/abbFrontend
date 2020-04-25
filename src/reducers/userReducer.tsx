@@ -2,42 +2,46 @@ import {
   FETCH_USER_ERROR,
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
-} from '../actions/index'
+  UserState,
+  UserActionTypes
+} from '../utils/ReduxTypes'
+
+const initialState: UserState = {
+  user: {
+    id: '',
+    name: '',
+    bio: '',
+    email: '',
+    country: '',
+    languagues: [],
+    isHost: false,
+  },
+  error: '',
+  isLoading: false,
+}
 
 const userReducer = (
-  state = {
-    user: {
-      id: '',
-      name: '',
-      bio: '',
-      email: '',
-      country: '',
-      languagues: [],
-      isHost: null,
-    },
-    error: '',
-    isLoading: null,
-  },
-  action
-) => {
+  state = initialState,
+  action: UserActionTypes
+): UserState => {
   switch (action.type) {
     case FETCH_USER_REQUEST:
       return {
         ...state,
         isLoading: true,
-        user: action.payload.result,
       }
 
     case FETCH_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
+        user: action.payload
       }
     case FETCH_USER_ERROR:
       return {
         ...state,
         isLoading: false,
-        error: action.payload.error,
+        error: action.payload
       }
     default:
       return state

@@ -1,15 +1,17 @@
-import { LOGIN_REQUEST, LOGOUT, LOGIN_SUCCESS, FAILED_LOGIN } from '../actions/index'
+import { LOGIN_REQUEST, LOGOUT, LOGIN_SUCCESS, FAILED_LOGIN, LoginState, LoginActionsTypes } from '../utils/ReduxTypes'
+
+const initialState: LoginState = { user_id: '', email: '', password: '', error: '', isLoading: false };
 
 const loginReducer = (
-  state = { user_id: '', email: '', password: '', error: '', isLoading: false },
-  action
-) => {
+  state = initialState,
+  action: LoginActionsTypes
+): LoginState => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        user_id: action.payload.user_id
+        user_id: action.payload
       }
       case LOGIN_REQUEST:
         return {
@@ -29,7 +31,7 @@ const loginReducer = (
     case FAILED_LOGIN:
       return {
         ...state,
-        error: action.payload.error,
+        error: action.payload,
         isLoading: false
       }
     default:

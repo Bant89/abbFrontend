@@ -1,28 +1,27 @@
-
 export type Listing = {
-  id: string;
-  name: string;
-  average: number;
-  costPerNightBase: number;
-  country: string;
-  images: string[];
+  id: string
+  name: string
+  average: number
+  costPerNightBase: number
+  country: string
+  images: string[]
 }
 
 export type ListingsData = {
-  listings: Listing[];
+  listings: Listing[]
 }
 
 export type User = {
-  id: string;
-  name: string;
-  bio: string;
-  email: string;
-  country: string;
-  languagues: string[];
-  isHost: boolean;
+  id: string
+  name: string
+  bio: string
+  email: string
+  country: string
+  languagues: string[]
+  isHost: boolean
 }
 
 export type UserCredentials = {
-  email: string,
+  email: string
   password: string
 }
