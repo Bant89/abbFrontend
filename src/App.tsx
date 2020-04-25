@@ -14,9 +14,9 @@ function App() {
   return (
     <>
       <Router>
-        <Register path="/register" />
-        <Register path="/login" />
-        <Main path="/" default />
+        <Register path="register" />
+        <Register path="login" default />
+        <Main path="main" />
         <Inbox path="inbox" />
         <Profile path="profile" />
         <Search path="search" />

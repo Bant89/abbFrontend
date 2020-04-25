@@ -1,7 +1,7 @@
 import React from 'react';
 import { Listing } from '../../utils/Types'
 
-const Card: React.FC<{props: Listing}>  = ({ props }) => {
+const Card: React.FC<{props: Listing, key: string}>  = ( { props } ) => {
   let { id, name, average, costPerNightBase, country, images } = props;
 
   return(

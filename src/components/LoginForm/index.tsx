@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useFormik } from 'formik'
-import { Link } from '@reach/router'
+import { Link, useNavigate } from '@reach/router'
 import * as Yup from 'yup'
 
 export const LoginForm = () => {
@@ -10,6 +10,8 @@ export const LoginForm = () => {
     email: string,
     password: string
   }
+
+  const navigate = useNavigate();
 
   const GetToken = (values : Credentials) => {
     axios.post('http://localhost:3000/auth/login', {
@@ -41,6 +43,7 @@ export const LoginForm = () => {
     onSubmit: (values) => {
       console.log(values);
       GetToken(values)
+      navigate('/main')
     },
   })
   return (

@@ -28,7 +28,7 @@ export const Listings: React.FC<{}> = () => {
 
   console.log(data)
 
-  const cards = data.listings.map(listing => <Card props={listing} />)
+  const cards = data.listings.map(listing => <Card props={listing} key={listing.id}/>)
 
   return (
     <div>
