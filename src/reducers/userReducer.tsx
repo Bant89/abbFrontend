@@ -28,12 +28,14 @@ const userReducer = (
     case FETCH_USER_REQUEST:
       return {
         ...state,
+        error: '',
         isLoading: true,
       }
 
     case FETCH_USER_SUCCESS:
       return {
         ...state,
+        error: '',
         isLoading: false,
         user: action.payload
       }
