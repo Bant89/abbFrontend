@@ -47,7 +47,7 @@ const Card: React.FC<{props: Listing, key: string}>  = ( { props } ) => {
       <button onClick={() => { 
         isFavorite ? deleteFavorite() : addFavorite()
         setIsFavorite(!isFavorite)
-      }}>{isFavorite ? "Add to favorite" : "Remove favorite"}</button>
+      }}>{isFavorite ? "Remove favorite" :"Add to favorite"}</button>
     </div>
   )
 }

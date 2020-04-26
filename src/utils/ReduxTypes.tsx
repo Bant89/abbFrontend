@@ -1,4 +1,4 @@
-import { User, UserCredentials } from './Types'
+import { User, UserCredentials, LoginSuccessData } from './Types'
 
 export type LoginState = {
   user_id: string
@@ -6,6 +6,7 @@ export type LoginState = {
   password: string
   error: string
   isLoading: boolean
+  access_token: string
 }
 
 export type UserState = {
@@ -26,7 +27,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 
 interface LoginSuccessAction {
   type: typeof LOGIN_SUCCESS
-  payload: string
+  payload: LoginSuccessData
 }
 
 export const LOGOUT = 'LOGOUT'

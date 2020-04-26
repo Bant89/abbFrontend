@@ -26,3 +26,8 @@ export type UserCredentials = {
   email: string
   password: string
 }
+
+export type LoginSuccessData = {
+  access_token: string
+  user_id: string
+}

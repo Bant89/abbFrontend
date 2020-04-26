@@ -1,4 +1,4 @@
-import { UserCredentials, User } from '../utils/Types'
+import { UserCredentials, User, LoginSuccessData } from '../utils/Types'
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -20,10 +20,10 @@ export const login_request = (values: UserCredentials): LoginActionsTypes => {
   }
 }
 
-export const login_success = (user_id: string): LoginActionsTypes => {
+export const login_success = (result: LoginSuccessData): LoginActionsTypes => {
   return {
     type: LOGIN_SUCCESS,
-    payload: user_id,
+    payload: result
   }
 }
 

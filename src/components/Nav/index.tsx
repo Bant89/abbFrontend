@@ -34,7 +34,7 @@ const Nav = (props: RouteComponentProps)  => {
   const dispatch = useDispatch()
   const selectLoginState = (state: RootState) => state.loginState
   const  { user_id } = useSelector(selectLoginState)
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(user_id ? true : false)
   const getName = () => {
     return data?.userDetail.name.split(' ')[0].toLocaleUpperCase()
   }

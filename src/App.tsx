@@ -5,10 +5,6 @@ import { setContext } from 'apollo-link-context'
 import { HttpLink } from 'apollo-link-http'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { Router } from '@reach/router'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import { mergedReducers } from './reducers'
-import { composeWithDevTools } from 'redux-devtools-extension'
 import Register from './pages/Register'
 import Main from './pages/Main'
 import Inbox from './pages/Inbox'
@@ -17,6 +13,8 @@ import Saved from './pages/Saved'
 import Search from './pages/Search'
 import Nav from './components/Nav'
 import ResetPasswordForm from './components/ResetPasswordForm'
+import { LoginState } from './utils/ReduxTypes'
+import { useSelector } from 'react-redux'
 
 const cache = new InMemoryCache()
 const link = new HttpLink({
@@ -24,14 +22,20 @@ const link = new HttpLink({
   uri: 'http://localhost:3000/graphql',
 })
 
-const appStore = createStore(mergedReducers, composeWithDevTools())
+interface RootState {
+  loginState: LoginState
+}
+
 
 function App() {
-  const [authToken, setAuthToken] = useState<string | null>('')
+
+  const selectLoginState = (state: RootState) => state.loginState
+  const  { access_token } = useSelector(selectLoginState)
+  const [authToken, setAuthToken] = useState<string | null>(access_token)
 
   useEffect(() => {
-    setAuthToken(sessionStorage.getItem('access_token'))
-  }, [])
+    setAuthToken(access_token)
+  }, [access_token])
 
   const authLink = setContext((_, { headers }) => {
 
@@ -50,7 +54,6 @@ function App() {
 
   return (
     <>
-    <Provider store={appStore}>
      <ApolloProvider client={client}>
         <Router>
           <Register path="register" />
@@ -64,7 +67,6 @@ function App() {
         </Router>
         <Nav />
       </ApolloProvider>
-    </Provider>
     </>
   )
 }

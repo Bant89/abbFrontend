@@ -26,7 +26,7 @@ export const LoginForm = () => {
         let { access_token, user_id } = response.data
         sessionStorage.setItem('access_token', access_token)
         sessionStorage.setItem('user_id', user_id)
-        dispatch(login_success(user_id))
+        dispatch(login_success({user_id, access_token}))
       })
       .catch((error) => {
         console.log(error)
