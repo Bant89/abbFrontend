@@ -19,6 +19,7 @@ export type User = {
   country: string
   languagues: string[]
   isHost: boolean
+  favoritesListing: string[]
 }
 
 export type UserCredentials = {

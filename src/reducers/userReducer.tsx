@@ -15,6 +15,7 @@ const initialState: UserState = {
     country: '',
     languagues: [],
     isHost: false,
+    favoritesListing: []
   },
   error: '',
   isLoading: false,

@@ -20,13 +20,13 @@ const GET_LISTINGS = gql`
 export const Listings: React.FC<{}> = () => {
   const { data, loading, error } = useQuery<ListingsData>(GET_LISTINGS)
 
-  console.log(data)
+  console.log('Antes en Listings ', data)
 
   if (loading) return <p>Loading!</p>
   if (error) return <p>Error!</p>
   if (!data) return <p>Not Found!</p>
 
-  console.log(data)
+  console.log('Despues en Listings ', data)
 
   const cards = data.listings.map(listing => <Card props={listing} key={listing.id}/>)
 

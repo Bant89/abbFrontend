@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect } from 'react'
+import React, { CSSProperties, useState, useEffect } from 'react'
 import { RouteComponentProps, Link } from '@reach/router';
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
@@ -24,6 +24,7 @@ const GET_USER_DETAIL = gql`
       bio
       languagues
       isHost
+      favoritesListing
     }
   }
 `
@@ -33,14 +34,20 @@ const Nav = (props: RouteComponentProps)  => {
   const dispatch = useDispatch()
   const selectLoginState = (state: RootState) => state.loginState
   const  { user_id } = useSelector(selectLoginState)
+  const [isLogged, setIsLogged] = useState(false)
+  const getName = () => {
+    return data?.userDetail.name.split(' ')[0].toLocaleUpperCase()
+  }
+
   console.log(`User id: ${user_id}`)
   dispatch(fetchUserRequest(user_id))
+
   // TODO: MAKE IT SO THAT WHILE THERE'S THE USER_ID IN THE SESSIONSTORAGE YOU RETRIEVE THE USER DATA EVEN THOUGHT YOU MAY DON'T GO TO THE LOGIN ROUTE
   const { error, data } = useQuery<returnValue | undefined>(GET_USER_DETAIL, {
       variables: { userId: user_id },
       fetchPolicy: "no-cache"
   })
-
+  console.log('Is logged ? ', isLogged)
   console.log(`Error: ${error} Data: ${JSON.stringify(data?.userDetail)}`)
 
   if (error)
@@ -49,6 +56,12 @@ const Nav = (props: RouteComponentProps)  => {
   if (data) {
     dispatch(fetchUserSuccess(data.userDetail))
   }
+
+  useEffect(() => {
+    if(data?.userDetail)
+      setIsLogged(true)
+  }, [data])
+
   const navStyle: CSSProperties = {
     display: "flex", 
     justifyContent: "space-around"
@@ -60,7 +73,7 @@ const Nav = (props: RouteComponentProps)  => {
       <Link to="/saved">SAVED</Link>
       <Link to="/search">SEARCH</Link>
       <Link to="/inbox">INBOX</Link>
-      <Link to="/login">LOG IN</Link>
+  {!isLogged ? <Link to="/login">LOG IN</Link> : <Link to="/profile">{getName()}</Link>}
     </nav>
   )
 }
