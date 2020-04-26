@@ -11,6 +11,10 @@ export type ListingsData = {
   listings: Listing[]
 }
 
+export type FavsData = {
+  userFavoritesListings: Listing[]
+}
+
 export type User = {
   id: string
   name: string

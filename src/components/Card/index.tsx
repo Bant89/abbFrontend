@@ -1,6 +1,6 @@
 import React, { CSSProperties, useState } from 'react';
 import { Listing } from '../../utils/Types'
-import { UserState, LoginState } from '../../utils/ReduxTypes';
+import { UserState } from '../../utils/ReduxTypes';
 import { useSelector } from 'react-redux';
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks';
