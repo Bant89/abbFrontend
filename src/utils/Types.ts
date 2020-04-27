@@ -15,6 +15,21 @@ export type FavsData = {
   userFavoritesListings: Listing[]
 }
 
+export type UserListingsData = {
+  getUserListings: Listing[]
+}
+
+export type UserReviewsData = {
+  getUserReviews: Review[]
+}
+
+export type Review = {
+  id: string
+  comment: string
+  dateMade: string
+  listingId: string
+}
+
 export type User = {
   id: string
   name: string
