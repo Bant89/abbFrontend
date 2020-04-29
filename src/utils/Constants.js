@@ -1,3 +1,12 @@
+
+export const URL_WS = 'ws://localhost:3000/graphql'
+
+export const HEADERS = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+};
+
+
 export const COUNTRIES = [ 
   {name: 'Afghanistan', code: 'AF'}, 
   {name: 'Åland Islands', code: 'AX'}, 

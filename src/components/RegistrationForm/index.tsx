@@ -45,7 +45,8 @@ export const RegistrationForm = () => {
       country: '',
       isHost: false,
       bio: '',
-      languagues: ''
+      languagues: '',
+      photo: null
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -59,9 +60,13 @@ export const RegistrationForm = () => {
       isHost: Yup.boolean().required('Required'),
       bio: Yup.string().required('Required'),
       languagues: Yup.string().required('Required'),
+      photo: Yup.mixed()
     }),
     onSubmit: (values) => {
-
+      const photo = values.photo
+      delete values.photo
+      console.log(`Photo: ${photo}`)
+      debugger
       CreateUser(values)
       setTimeout(() => {
         alert(JSON.stringify(values, null, 2))
@@ -137,6 +142,12 @@ export const RegistrationForm = () => {
             <div>{formik.errors.languagues}</div>
           ) : null}
 
+        <label htmlFor="photo">Photo:</label>
+          <input id="photo" {...formik.getFieldProps('photo')} type="file"/>
+          {formik.touched.photo && formik.errors.photo ? (
+            <div>{formik.errors.photo}</div>
+          ) : null}
+        
         <button type="submit">Register</button>
       </form>
     <p>Already have an account?<br /><Link to="/login">login</Link></p>
