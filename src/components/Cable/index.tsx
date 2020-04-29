@@ -1,10 +1,11 @@
 import React from 'react'
+import { Conversation } from '../../utils/Types'
 import { ActionCable } from 'react-actioncable-provider'
 
-export const Cable = ({ conversations, handleReceivedMessage }) => {
+export const Cable = ({ conversations, handleReceivedMessage }: any) => {
   return (
     <>
-    {conversations.map(conversation => {
+    {conversations.map((conversation: Conversation) => {
       return (
         <ActionCable
         key={conversation.id}

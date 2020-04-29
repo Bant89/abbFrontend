@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-
+import { Message } from '../../utils/Types'
 import { URL_WS, HEADERS } from '../../utils/Constants'
 
-export const NewMessageForm = ( {conversation_id} ) => {
+export const NewMessageForm = ( { conversation_id }: { conversation_id: string } ) => {
   const [text, setText] = useState('')
   const [conversationId, setConversationId] = useState(conversation_id)
 
-  const handleChange = e => setText(e.target.value)
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => setText(e.currentTarget.value)
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     fetch(`${URL_WS}/messages`, {
       method: 'POST',

@@ -4,9 +4,9 @@ import { URL_WS, HEADERS } from '../../utils/Constants'
 export const NewConversationForm = () => {
   const [title, setTitle] = useState('')
 
-  const handleChange = e => setTitle(e.target.value)
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     fetch(`${URL_WS}/conversations`, {
       method: 'POST',

@@ -50,3 +50,17 @@ export type LoginSuccessData = {
   access_token: string
   user_id: string
 }
+
+export type Conversation = {
+  id: string
+  title: string
+  messages: Message[]
+}
+
+export type Message = {
+  id: string
+  conversation_id: string
+  text: string
+  created_at: string
+}
+

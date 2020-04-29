@@ -1,4 +1,5 @@
 
+export const URL = 'http://localhost:3000/graphql'
 export const URL_WS = 'ws://localhost:3000/graphql'
 
 export const HEADERS = {
