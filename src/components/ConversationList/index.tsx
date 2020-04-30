@@ -4,7 +4,7 @@ import { NewConversationForm } from '../NewConversationForm'
 import { MessagesArea } from '../MessagesArea'
 import { Cable } from '../Cable'
 import { URL } from '../../utils/Constants'
-import { Conversation, Message } from '../../utils/Types'
+import { Conversation } from '../../utils/Types'
 
 const findActiveConversation = (conversations: Conversation[], activeConservation: string | null) => {
    let ans = conversations.find((conversation: Conversation) => conversation.id === activeConservation)
@@ -13,7 +13,7 @@ const findActiveConversation = (conversations: Conversation[], activeConservatio
 }
 
 const mapConversations = (conversations: Conversation[], handleClick: { (id: any): void; (arg0: string): void }) => {
-  return conversations.map(conversation => {
+ return conversations.map(conversation => {
     return (
       <li key={conversation.id} onClick={() => handleClick(conversation.id)}> 
         {conversation.title}
@@ -29,8 +29,11 @@ export const ConversationsList = () => {
   useEffect(() => {
     fetch(`${URL}/conversations`)
     .then(res => res.json())
-    .then(conversations => setConversations(conversations))
-  },[])
+    .then(conversations => { 
+      console.log(`Conversations: ${conversations}`)
+      setConversations(conversations)
+    })
+  },[conversations])
 
   const handleClick = (id: string) => setActiveConversation(id)
 

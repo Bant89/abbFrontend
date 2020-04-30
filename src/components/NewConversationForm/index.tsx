@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { URL_WS, HEADERS } from '../../utils/Constants'
+import { URL, HEADERS } from '../../utils/Constants'
 
 export const NewConversationForm = () => {
   const [title, setTitle] = useState('')
@@ -8,7 +8,7 @@ export const NewConversationForm = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    fetch(`${URL_WS}/conversations`, {
+    fetch(`${URL}/conversations`, {
       method: 'POST',
       headers: HEADERS,
       body: JSON.stringify({title})
@@ -21,6 +21,7 @@ export const NewConversationForm = () => {
       <form onSubmit={handleSubmit}>
         <label>New conversation:</label>  
         <input type="text" value={title} onChange={handleChange} />
+        <input type="submit" value="Submit Conversation"/>
       </form>
     </div>
   )

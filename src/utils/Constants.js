@@ -1,6 +1,6 @@
 
-export const URL = 'http://localhost:3000/graphql'
-export const URL_WS = 'ws://localhost:3000/graphql'
+export const URL = 'http://localhost:3000'
+export const URL_WS = 'ws://localhost:3000/cable'
 
 export const HEADERS = {
   'Content-Type': 'application/json',
