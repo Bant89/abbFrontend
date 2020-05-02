@@ -33,7 +33,7 @@ export const ConversationsList = () => {
       console.log(`Conversations: ${conversations}`)
       setConversations(conversations)
     })
-  },[conversations])
+  },[])
 
   const handleClick = (id: string) => setActiveConversation(id)
 
