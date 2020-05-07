@@ -14,6 +14,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.7",
+    "actioncable": "^5.2.4-2",
     "apollo-boost": "^0.4.7",
     "apollo-link": "^1.2.14",
     "apollo-link-context": "^1.0.20",

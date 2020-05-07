@@ -31,18 +31,13 @@ function App() {
 
   const selectLoginState = (state: RootState) => state.loginState
   const  { access_token } = useSelector(selectLoginState)
-  const [authToken, setAuthToken] = useState<string | null>(access_token)
-
-  useEffect(() => {
-    setAuthToken(access_token)
-  }, [access_token])
 
   const authLink = setContext((_, { headers }) => {
 
     return {
       headers: {
         ...headers,
-        authorization: authToken ? `Bearer ${authToken}` : '',
+        authorization: access_token ? `Bearer ${access_token}` : '',
       },
     }
   })
@@ -60,6 +55,7 @@ function App() {
           <Register path="login" default />
           <Main path="main" />
           <Inbox path="inbox" />
+          <Inbox path="inbox/:conversationTitle" />
           <Profile path="profile" />
           <Search path="search" />
           <Saved path="saved" />
