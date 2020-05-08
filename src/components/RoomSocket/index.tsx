@@ -14,7 +14,7 @@ export const RoomSocket = (props: ConversationProps) => {
   useEffect(() => {
     if(conversationTitle !== undefined)
       getConversationData(conversationTitle)
-
+    console.log('Conversation title ', conversationTitle);
     // cable.conversation = cable.cable.subscriptions.create(
     //   {
     //     channel: 'ConversationsChannel',

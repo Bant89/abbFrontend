@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import actionCable from 'actioncable'
 import { URL_WS, URL } from '../utils/Constants'
@@ -7,13 +7,13 @@ import { RoomSocket } from '../components/RoomSocket'
 
 
 const Inbox = (props: RouteComponentProps) => {
-  const cable = actionCable.createConsumer(URL_WS)
+  const cableApp = actionCable.createConsumer(URL_WS)
   const [conversation, setConversation] = useState({})
   const [users, setUsers] = useState([])
   const [messages, setMessages] = useState([])
-  
-  const getConversationData = (id: string) => {
-    fetch(`${URL}/conversations/${id}`)
+
+  const getConversationData = (title: string) => {
+    fetch(`${URL}/conversations/${title}`)
     .then(response => response.json())
     .then(result => {
       console.log(result)
@@ -27,8 +27,8 @@ const Inbox = (props: RouteComponentProps) => {
   return (
     <>
       <h1>Inbox</h1>
-      <RoomList cable={cable} updateConversation={updateConversation} getConversationData={getConversationData} />
-      <RoomSocket cable={cable} updateConversation={updateConversation} getConversationData={getConversationData}/>
+      <RoomList cable={cableApp} updateConversation={updateConversation} getConversationData={getConversationData} />
+      <RoomSocket cable={cableApp} updateConversation={updateConversation} getConversationData={getConversationData}/>
     </>
   )
 }
