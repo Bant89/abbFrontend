@@ -28,7 +28,7 @@ const Inbox = (props: RouteComponentProps) => {
     <>
       <h1>Inbox</h1>
       <RoomList cable={cableApp} updateConversation={updateConversation} getConversationData={getConversationData} />
-      <RoomSocket cable={cableApp} updateConversation={updateConversation} getConversationData={getConversationData}/>
+      {/* <RoomSocket cable={cableApp} updateConversation={updateConversation} getConversationData={getConversationData}/> */}
     </>
   )
 }
